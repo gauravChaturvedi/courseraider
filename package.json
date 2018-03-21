@@ -46,7 +46,8 @@
     "redux": "^3.6.0",
     "redux-form": "^6.4.3",
     "redux-saga": "^0.14.3",
-    "salad-ui.chart": "^1.1.55"
+    "salad-ui.chart": "^1.1.55",
+    "moment": "^2.12.0"
   },
   "devDependencies": {
     "babel-core": "^6.21.0",
