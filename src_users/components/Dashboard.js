@@ -1,10 +1,18 @@
 import React from "react";
 import ReactHighcharts from "react-highcharts";
+
+import Highcharts from "highcharts";
+var wordcloud = require('highcharts/modules/wordcloud');
+
+
 import WordCloud from 'react-d3-cloud';
 
-const config2 = {
+const areaChartConfig = {
   chart: {
     type: 'area'
+  },
+  credits: {
+        enabled: false
   },
   title: {
     text: 'Historic and Estimated Worldwide Population Growth by Region'
@@ -59,51 +67,12 @@ const config2 = {
   }]
 };
 
-const config = {
-  title: {
-    text: 'Feedback 1'
-  },
-  xAxis: {
-    categories: ['Class 1', 'Class 2', 'Class 3', 'Class 4', 'Class 5', 'Class 6', 'Class 7', 'Class 8']
-  },
-  series: [{
-    data: [29.9, 71.5, 106.4, 129.2, 144.0, 176.0, 135.6, 148.5]
-  }],
-  responsive: {
-    rules: [{
-      condition: {
-        maxWidth: 500
-      },
-      chartOptions: {
-        legend: {
-          align: 'center',
-          verticalAlign: 'bottom',
-          layout: 'horizontal'
-        },
-        yAxis: {
-          labels: {
-            align: 'left',
-            x: 0,
-            y: -5
-          },
-          title: {
-            text: null
-          }
-        },
-        subtitle: {
-          text: null
-        },
-        credits: {
-          enabled: false
-        }
-      }
-    }]
-  }
-};
-
 const barChartConfig = {
   chart: {
     type: 'column'
+  },
+  credits: {
+        enabled: false
   },
   title: {
     text: 'Browser market shares. January, 2015 to May, 2015'
@@ -355,410 +324,430 @@ const barChartConfig = {
 
 var wordCloudData = [
   {
-    "text": "Lorem",
-    "value": 1
+    "name": "Lorem",
+    "weight": 1
   },
   {
-    "text": "ipsum",
-    "value": 1
+    "name": "ipsum",
+    "weight": 1
   },
   {
-    "text": "dolor",
-    "value": 1
+    "name": "dolor",
+    "weight": 1
   },
   {
-    "text": "sit",
-    "value": 2
+    "name": "sit",
+    "weight": 2
   },
   {
-    "text": "amet",
-    "value": 2
+    "name": "amet",
+    "weight": 2
   },
   {
-    "text": "consectetur",
-    "value": 2
+    "name": "consectetur",
+    "weight": 2
   },
   {
-    "text": "adipiscing",
-    "value": 1
+    "name": "adipiscing",
+    "weight": 1
   },
   {
-    "text": "elit",
-    "value": 2
+    "name": "elit",
+    "weight": 2
   },
   {
-    "text": "Aenean",
-    "value": 1
+    "name": "Aenean",
+    "weight": 1
   },
   {
-    "text": "bibendum",
-    "value": 1
+    "name": "bibendum",
+    "weight": 1
   },
   {
-    "text": "erat",
-    "value": 3
+    "name": "erat",
+    "weight": 3
   },
   {
-    "text": "ac",
-    "value": 4
+    "name": "ac",
+    "weight": 4
   },
   {
-    "text": "justo",
-    "value": 2
+    "name": "justo",
+    "weight": 2
   },
   {
-    "text": "sollicitudin",
-    "value": 2
+    "name": "sollicitudin",
+    "weight": 2
   },
   {
-    "text": "quis",
-    "value": 1
+    "name": "quis",
+    "weight": 1
   },
   {
-    "text": "lacinia",
-    "value": 2
+    "name": "lacinia",
+    "weight": 2
   },
   {
-    "text": "ligula",
-    "value": 1
+    "name": "ligula",
+    "weight": 1
   },
   {
-    "text": "fringilla",
-    "value": 1
+    "name": "fringilla",
+    "weight": 1
   },
   {
-    "text": "Pellentesque",
-    "value": 1
+    "name": "Pellentesque",
+    "weight": 1
   },
   {
-    "text": "hendrerit",
-    "value": 2
+    "name": "hendrerit",
+    "weight": 2
   },
   {
-    "text": "nisi",
-    "value": 1
+    "name": "nisi",
+    "weight": 1
   },
   {
-    "text": "vitae",
-    "value": 3
+    "name": "vitae",
+    "weight": 3
   },
   {
-    "text": "posuere",
-    "value": 2
+    "name": "posuere",
+    "weight": 2
   },
   {
-    "text": "condimentum",
-    "value": 2
+    "name": "condimentum",
+    "weight": 2
   },
   {
-    "text": "lectus",
-    "value": 1
+    "name": "lectus",
+    "weight": 1
   },
   {
-    "text": "urna",
-    "value": 1
+    "name": "urna",
+    "weight": 1
   },
   {
-    "text": "accumsan",
-    "value": 2
+    "name": "accumsan",
+    "weight": 2
   },
   {
-    "text": "libero",
-    "value": 1
+    "name": "libero",
+    "weight": 1
   },
   {
-    "text": "rutrum",
-    "value": 1
+    "name": "rutrum",
+    "weight": 1
   },
   {
-    "text": "commodo",
-    "value": 1
+    "name": "commodo",
+    "weight": 1
   },
   {
-    "text": "mi",
-    "value": 2
+    "name": "mi",
+    "weight": 2
   },
   {
-    "text": "lacus",
-    "value": 1
+    "name": "lacus",
+    "weight": 1
   },
   {
-    "text": "pretium",
-    "value": 5
+    "name": "pretium",
+    "weight": 5
   },
   {
-    "text": "Phasellus",
-    "value": 1
+    "name": "Phasellus",
+    "weight": 1
   },
   {
-    "text": "ultrices",
-    "value": 1
+    "name": "ultrices",
+    "weight": 1
   },
   {
-    "text": "sed",
-    "value": 1
+    "name": "sed",
+    "weight": 1
   },
   {
-    "text": "semper",
-    "value": 1
+    "name": "semper",
+    "weight": 1
   },
   {
-    "text": "Praesent",
-    "value": 3
+    "name": "Praesent",
+    "weight": 3
   },
   {
-    "text": "ut",
-    "value": 3
+    "name": "ut",
+    "weight": 3
   },
   {
-    "text": "tristique",
-    "value": 2
+    "name": "tristique",
+    "weight": 2
   },
   {
-    "text": "magna",
-    "value": 1
+    "name": "magna",
+    "weight": 1
   },
   {
-    "text": "Donec",
-    "value": 1
+    "name": "Donec",
+    "weight": 1
   },
   {
-    "text": "nisl",
-    "value": 1
+    "name": "nisl",
+    "weight": 1
   },
   {
-    "text": "tellus",
-    "value": 3
+    "name": "tellus",
+    "weight": 3
   },
   {
-    "text": "sagittis",
-    "value": 1
+    "name": "sagittis",
+    "weight": 1
   },
   {
-    "text": "tempus",
-    "value": 1
+    "name": "tempus",
+    "weight": 1
   },
   {
-    "text": "eget",
-    "value": 3
+    "name": "eget",
+    "weight": 3
   },
   {
-    "text": "Sed",
-    "value": 1
+    "name": "Sed",
+    "weight": 1
   },
   {
-    "text": "ornare",
-    "value": 2
+    "name": "ornare",
+    "weight": 2
   },
   {
-    "text": "gravida",
-    "value": 1
+    "name": "gravida",
+    "weight": 1
   },
   {
-    "text": "Curabitur",
-    "value": 2
+    "name": "Curabitur",
+    "weight": 2
   },
   {
-    "text": "iaculis",
-    "value": 1
+    "name": "iaculis",
+    "weight": 1
   },
   {
-    "text": "metus",
-    "value": 1
+    "name": "metus",
+    "weight": 1
   },
   {
-    "text": "purus",
-    "value": 2
+    "name": "purus",
+    "weight": 2
   },
   {
-    "text": "est",
-    "value": 1
+    "name": "est",
+    "weight": 1
   },
   {
-    "text": "laoreet",
-    "value": 1
+    "name": "laoreet",
+    "weight": 1
   },
   {
-    "text": "Quisque",
-    "value": 1
+    "name": "Quisque",
+    "weight": 1
   },
   {
-    "text": "augue",
-    "value": 1
+    "name": "augue",
+    "weight": 1
   },
   {
-    "text": "eros",
-    "value": 3
+    "name": "eros",
+    "weight": 3
   },
   {
-    "text": "malesuada",
-    "value": 1
+    "name": "malesuada",
+    "weight": 1
   },
   {
-    "text": "facilisis",
-    "value": 2
+    "name": "facilisis",
+    "weight": 2
   },
   {
-    "text": "mauris",
-    "value": 1
+    "name": "mauris",
+    "weight": 1
   },
   {
-    "text": "Mauris",
-    "value": 1
+    "name": "Mauris",
+    "weight": 1
   },
   {
-    "text": "molestie",
-    "value": 1
+    "name": "molestie",
+    "weight": 1
   },
   {
-    "text": "nulla",
-    "value": 1
+    "name": "nulla",
+    "weight": 1
   },
   {
-    "text": "quam",
-    "value": 1
+    "name": "quam",
+    "weight": 1
   },
   {
-    "text": "placerat",
-    "value": 1
+    "name": "placerat",
+    "weight": 1
   },
   {
-    "text": "sem",
-    "value": 1
+    "name": "sem",
+    "weight": 1
   },
   {
-    "text": "in",
-    "value": 1
+    "name": "in",
+    "weight": 1
   },
   {
-    "text": "mattis",
-    "value": 1
+    "name": "mattis",
+    "weight": 1
   },
   {
-    "text": "non",
-    "value": 2
+    "name": "non",
+    "weight": 2
   },
   {
-    "text": "odio",
-    "value": 2
+    "name": "odio",
+    "weight": 2
   },
   {
-    "text": "Nunc",
-    "value": 1
+    "name": "Nunc",
+    "weight": 1
   },
   {
-    "text": "aliquet",
-    "value": 1
+    "name": "aliquet",
+    "weight": 1
   },
   {
-    "text": "nec",
-    "value": 3
+    "name": "nec",
+    "weight": 3
   },
   {
-    "text": "auctor",
-    "value": 1
+    "name": "auctor",
+    "weight": 1
   },
   {
-    "text": "congue",
-    "value": 1
+    "name": "congue",
+    "weight": 1
   },
   {
-    "text": "sapien",
-    "value": 2
+    "name": "sapien",
+    "weight": 2
   },
   {
-    "text": "dictum",
-    "value": 1
+    "name": "dictum",
+    "weight": 1
   },
   {
-    "text": "massa",
-    "value": 2
+    "name": "massa",
+    "weight": 2
   },
   {
-    "text": "fermentum",
-    "value": 1
+    "name": "fermentum",
+    "weight": 1
   },
   {
-    "text": "luctus",
-    "value": 1
+    "name": "luctus",
+    "weight": 1
   },
   {
-    "text": "et",
-    "value": 2
+    "name": "et",
+    "weight": 2
   },
   {
-    "text": "nunc",
-    "value": 1
+    "name": "nunc",
+    "weight": 1
   },
   {
-    "text": "In",
-    "value": 1
+    "name": "In",
+    "weight": 1
   },
   {
-    "text": "consequat",
-    "value": 2
+    "name": "consequat",
+    "weight": 2
   },
   {
-    "text": "interdum",
-    "value": 1
+    "name": "interdum",
+    "weight": 1
   },
   {
-    "text": "Ut",
-    "value": 1
+    "name": "Ut",
+    "weight": 1
   },
   {
-    "text": "neque",
-    "value": 1
+    "name": "neque",
+    "weight": 1
   },
   {
-    "text": "dui",
-    "value": 1
+    "name": "dui",
+    "weight": 1
   },
   {
-    "text": "maximus",
-    "value": 1
+    "name": "maximus",
+    "weight": 1
   },
   {
-    "text": "id",
-    "value": 1
+    "name": "id",
+    "weight": 1
   },
   {
-    "text": "Nullam",
-    "value": 1
+    "name": "Nullam",
+    "weight": 1
   },
   {
-    "text": "vel",
-    "value": 1
+    "name": "vel",
+    "weight": 1
   },
   {
-    "text": "lorem",
-    "value": 1
+    "name": "lorem",
+    "weight": 1
   },
   {
-    "text": "",
-    "value": 1
+    "name": "",
+    "weight": 1
   }
 ];
+
+const wcConfig = {
+  series: [{
+        type: 'wordcloud',
+        data: wordCloudData,
+        name: 'Occurrences'
+    }],
+    title: {
+        text: 'Wordcloud of Lorem Ipsum'
+    },
+    credits: {
+        enabled: false
+    },
+};
 
 const fontSizeMapper = word => Math.log2(word.value) * 25;
 const rotate = word => word.value % 360;
 
 // Home page component
 export default class Dashboard extends React.Component {
+  componentWillMount() {
+    wordcloud(Highcharts);
+  }
+
   // render
   render() {
     return (
       <div className="">
         <div className="chart-container">
-          <ReactHighcharts config={config2}/>
+          <ReactHighcharts config={areaChartConfig}/>
         </div>
         <div className="chart-container" style={{marginTop: "10%"}}>
           <ReactHighcharts config={barChartConfig}/>
         </div>
         <div className="chart-container" style={{marginTop: "10%"}}>
-          <WordCloud data={wordCloudData} fontSizeMapper={fontSizeMapper} rotate={rotate} />
+          <ReactHighcharts config={wcConfig}/>
         </div>
       </div>
     );
   }
 }
+
+// <WordCloud data={wordCloudData} fontSizeMapper={fontSizeMapper} rotate={rotate} />

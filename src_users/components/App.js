@@ -43,7 +43,7 @@ export class App extends React.Component {
             <img src={imgSrc} />
           </div>
           <div className="title-container">
-            <h2>Dashboard</h2>
+            <h3>Dashboard</h3>
           </div>
         </div>
         <div className="mn-container">
@@ -56,6 +56,7 @@ export class App extends React.Component {
                 strokeWidth={10}
                 percent={65}
                 strokeColor="#8F85E8"
+                labelColor="#eee"
               />
             </div>
           </div>
