@@ -4,24 +4,59 @@ import { IndexLinkContainer, LinkContainer } from "react-router-bootstrap";
 
 // Menu component
 export default class Menu extends React.Component {
+  constructor(props) {
+    super(props);
+
+    // default ui local state
+    this.state = {
+      showSubMenu: false,
+      showCreateQuizOptions: false
+    };
+
+    // bind <this> to the event method
+    this.toggleSubMenu = this.toggleSubMenu.bind(this);
+  }
+
   // render
   render() {
     return (
-      <Nav bsStyle="pills">
+      <Nav bsStyle="pills" stacked>
         <IndexLinkContainer to="/">
           <NavItem>
-            Home
+            Dashboard
           </NavItem>
         </IndexLinkContainer>
-        <LinkContainer to="/user-edit">
+        <LinkContainer to="/create-form">
           <NavItem>
-            Add User <Glyphicon glyph="plus-sign"/>
+            Create Free Feedback
           </NavItem>
         </LinkContainer>
-        <NavItem href="http://redux-minimal.js.org/" target="_blank">
-          redux-minimal
-        </NavItem>
       </Nav>
     );
   }
+
+
+  toggleSubMenu(navItem) {
+    this.setState({
+      showSubMenu: !this.state.showSubMenu,
+      showCreateQuizOptions: !this.state.showCreateQuizOptions
+    });
+  }
+
+
 }
+
+
+// <NavItem onClick={this.toggleSubMenu}>
+//   <NavItem>
+//     This is an item <Glyphicon glyph="plus-sign"/>
+//   </NavItem>
+//   {
+//     this.state.showCreateQuizOptions &&
+//     <LinkContainer to="/user-edit">
+//       <NavItem>
+//         Add User
+//       </NavItem>
+//     </LinkContainer>
+//   }
+// </NavItem>

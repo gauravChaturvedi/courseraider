@@ -34,3 +34,92 @@
 th {
   background-image: url('/media/pattern.jpg');
 }
+
+.header-container {
+  display: flex;
+  width: 100%;
+}
+
+
+.mn-container {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: flex-start;
+  align-content: stretch;
+  align-items: flex-start;
+}
+
+.sidebar-container {
+  background-color: #3A3A4F;
+  order: 0;
+  // flex: 1 1 auto;
+  flex: 1;
+  align-self: stretch;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.donut-chart-container {
+  align-self: center;
+  margin-bottom: 20%;
+}
+
+.logo-container {
+    flex-grow: 1;
+    flex-shrink: 1;
+    flex-basis: 0%;
+    align-self: stretch;
+}
+
+.title-container {
+    flex-grow: 5;
+    flex-shrink: 1;
+    flex-basis: 0%;
+    align-self: stretch;
+    padding: 15px 15px 0 15px;
+    color: #eee;
+    background-color: #3A3A4F;
+}
+
+.logo-container>img {
+  width: 100%;
+  height: 100%;
+}
+
+.nav-pills>li>a {
+  color: #CAD5E7;
+  font-size: 1.2vw;
+}
+
+// Active menu item
+
+.nav-pills>li.active>a, .nav-pills>li.active>a:focus, .nav-pills>li.active>a:hover {
+  background-color: #8F85E8;
+  color: #eee;
+}
+
+// Inactive menu item
+.nav-pills>li>a:hover {
+  background-color: #48485A;
+}
+
+.routes-container {
+  overflow: scroll;
+  order: 0;
+  // flex: 5 5 auto;
+  background-color: #eee;
+  flex: 5;
+  align-self: stretch;
+  padding: 30px 15px 0 15px;
+  margin: auto;
+}
+
+.container {
+  width: 100%;
+}
+
+.chart-container {
+    // margin-top: 10%;
+}
