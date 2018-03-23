@@ -6,13 +6,14 @@ import { connect } from "react-redux";
 import Highcharts from "highcharts";
 var wordcloud = require('highcharts/modules/wordcloud');
 var drilldown = require('highcharts/modules/drilldown');
+var histogram = require('highcharts/modules/histogram-bellcurve');
 
 const barChartData = {
   "Class 1": 0.710478165,
   "Class 2": 0.721256542,
   "Class 3": 0.712503599,
   "Class 4": 0.680964993,
-  "Class 5": 0.696170192,
+  "Class 5": 0.696170192
 }
 
 const barChartConfig = {
@@ -44,7 +45,7 @@ const barChartConfig = {
     series: {
       borderWidth: 0,
       dataLabels: {
-        enabled: true,
+        enabled: false,
         format: '{point.y:.1f}%'
       }
     }
@@ -60,60 +61,32 @@ const barChartConfig = {
     colorByPoint: true,
     data: [{
       name: 'Microsoft Internet Explorer',
-      y: 56.33,
+      y: barChartData["Class 1"],
       drilldown: 'Microsoft Internet Explorer'
     }, {
       name: 'Chrome',
-      y: 24.03,
+      y: barChartData["Class 2"],
       drilldown: 'Chrome'
     }, {
       name: 'Firefox',
-      y: 10.38,
+      y: barChartData["Class 3"],
       drilldown: 'Firefox'
     }, {
       name: 'Safari',
-      y: 4.77,
+      y: barChartData["Class 4"],
       drilldown: 'Safari'
     }, {
       name: 'Opera',
-      y: 0.91,
+      y: barChartData["Class 5"],
       drilldown: 'Opera'
-    }, {
-      name: 'Proprietary or Undetectable',
-      y: 0.2,
-      drilldown: null
     }]
   }],
   drilldown: {
     series: [{
+      type: 'histogram',
       name: 'Microsoft Internet Explorer',
       id: 'Microsoft Internet Explorer',
-      data: [
-        [
-          'v11.0',
-          24.13
-        ],
-        [
-          'v8.0',
-          17.2
-        ],
-        [
-          'v9.0',
-          8.11
-        ],
-        [
-          'v10.0',
-          5.33
-        ],
-        [
-          'v6.0',
-          1.06
-        ],
-        [
-          'v7.0',
-          0.5
-        ]
-      ]
+      data: [0.9186635202612576,0.6482486759217726,0.6300298279656065,0.7984041113837526,0.7683536479666391,0.6197938233980768,0.6582803341825374,0.8469049262676471,0.7105936277075475,0.6707002754665687,0.7196133009699026,0.8182192481676988,0.7319220499601927,0.621132430488622,0.7642438441416042,0.8317630582622519,0.6046953108395023,0.8208540626046532,0.8096967666088299,0.6096188648927211,0.7019792699512413,0.5684228334879613,0.7074956423457663,0.6607480246746911,0.7146615664305144,0.8108325654630659,  0.6931592551575116,0.7265980701243638,0.8647334188982828,0.6716051566170087,0.6893938967155607,0.8448756322265428,0.4784146078422203,0.7406227269901631,0.74903337226062,0.6201183136805697,0.6570817960219766,0.7160049433678243,0.641360531147907,0.7531365760298007,0.758681124854649,0.7434737939781133,0.7271515941224796,0.8351096405172755,0.6646116630867153,0.7071138599127924,0.6504750812958434,0.5309089403784161,0.6785929987628061,0.6157796384939568]
     }, {
       name: 'Chrome',
       id: 'Chrome',
@@ -683,6 +656,7 @@ export class Dashboard extends React.Component {
   componentWillMount() {
     wordcloud(Highcharts);
     drilldown(Highcharts);
+    histogram(Highcharts);
   }
 
   setSelectedClassId(classId) {
@@ -703,7 +677,7 @@ export class Dashboard extends React.Component {
         text: 'Historic and Estimated Worldwide Population Growth by Region'
       },
       subtitle: {
-        text: 'Source: Wikipedia.org'
+        text: ''
       },
       xAxis: {
         categories: ['Class 1', 'Class 2', 'Class 3', 'Class 4', 'Class 5'],
@@ -764,16 +738,16 @@ export class Dashboard extends React.Component {
         }
       },
       series: [{
-        name: 'Q1',
+        name: 'Difficulty',
         data: [2.94, 3.1, 2.8, 3.26, 3.08]
       }, {
-        name: 'Q2',
+        name: 'Interest',
         data: [3.08, 3.5, 3.26, 3.06, 2.88]
       }, {
-        name: 'Q3',
+        name: 'Helpfulness',
         data: [3.2, 2.68, 3.12, 2.96, 2.84]
       }, {
-        name: 'Q4',
+        name: 'Satisfaction',
         data: [3, 2.66, 2.88, 2.64, 2.72]
       }]
     };
@@ -795,11 +769,4 @@ export class Dashboard extends React.Component {
 
 }
 
-function mapStateToProps(state, own_props) {
-  const classes = state.classes;
-  return {
-    classes: classes
-  };
-}
-
-export default connect(mapStateToProps)(Dashboard);
+export default connect()(Dashboard);
