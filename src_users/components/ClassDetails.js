@@ -163,6 +163,8 @@ export class ClassDetails extends React.Component {
         }
       },
       xAxis: {
+        min: 1,
+        max: 5,
         title: {
           text: 'Weight'
         }
