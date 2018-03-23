@@ -634,7 +634,7 @@ export class ClassDetails extends React.Component {
             name: 'Occurrences'
         }],
         title: {
-            text: 'Wordcloud of Lorem Ipsum'
+            text: 'Wordcloud of Feedback From ' + classes.id
         },
         credits: {
             enabled: false
