@@ -31,13 +31,9 @@ export class Dashboard extends React.Component {
         }
       },
       yAxis: {
+        categories: [0, 1, 2, 3, 4, 5],
         title: {
-          text: 'Total Score'
-        },
-        labels: {
-          formatter: function () {
-            return this.value / 1000;
-          }
+          text: 'Average Score'
         }
       },
       exporting: {
@@ -88,16 +84,16 @@ export class Dashboard extends React.Component {
       },
       series: [{
         name: 'Difficulty',
-        data: [2.94, 3.1, 2.8, 3.26, 3.08]
+        data: [3.92, 4.16, 3.88, 2.92, 2.14]
       }, {
         name: 'Interest',
-        data: [3.08, 3.5, 3.26, 3.06, 2.88]
+        data: [3.8, 3.96, 3.92, 2.94, 1.98]
       }, {
         name: 'Helpfulness',
-        data: [3.2, 2.68, 3.12, 2.96, 2.84]
+        data: [4.1, 4, 3.12, 2.92, 1.98]
       }, {
         name: 'Satisfaction',
-        data: [3, 2.66, 2.88, 2.64, 2.72]
+        data: [3.96, 4.02, 3.92, 2.9, 1.94]
       }]
     };
 
