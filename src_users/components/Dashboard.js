@@ -4,32 +4,8 @@ import { push } from "react-router-redux";
 import { connect } from "react-redux";
 import BarHistoChart from './BarHistoChart';
 
-import Highcharts from "highcharts";
-var wordcloud = require('highcharts/modules/wordcloud');
-var drilldown = require('highcharts/modules/drilldown');
-var histogram = require('highcharts/modules/histogram-bellcurve');
-
-const barChartData = {
-  "Class 1": 0.710478165,
-  "Class 2": 0.721256542,
-  "Class 3": 0.712503599,
-  "Class 4": 0.680964993,
-  "Class 5": 0.696170192
-}
-
-// Home page component
+// Dashboard component
 export class Dashboard extends React.Component {
-  // constructor
-  constructor(props) {
-    super(props);
-    // bind <this> to the event method
-  }
-
-  componentWillMount() {
-    wordcloud(Highcharts);
-    drilldown(Highcharts);
-    histogram(Highcharts);
-  }
 
   // render
   render() {
@@ -97,11 +73,9 @@ export class Dashboard extends React.Component {
                               class_Id: this.category
                             },
                             callbackError: (error) => {
-                              console.log('failed :()');
                               reject(new SubmissionError({_error: error}));
                             },
                             callbackSuccess: () => {
-                              console.log('success!');
                               dispatch(push('/class'));
                               resolve();
                             }

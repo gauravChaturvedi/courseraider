@@ -50,10 +50,13 @@ export class App extends React.Component {
           <div className="sidebar-container" style={{maxHeight: this.state.conentWrapperMaxHeight}}>
             <Menu/>
             <div className="donut-chart-container">
+              <div className="title-container" style={{marginBottom: '20px'}} >
+                Aggregate Feedback Score
+              </div>
               <CirclePie
                 width={175}
                 height={175}
-                strokeWidth={10}
+                strokeWidth={30}
                 percent={65}
                 strokeColor="#8F85E8"
                 labelColor="#eee"

@@ -51,6 +51,13 @@ export class ClassDetails extends React.Component {
         title: {
             text: 'Difficulty Score'
         },
+        exporting: {
+         buttons: {
+           contextButton: {
+                      enabled: false
+              }
+           }
+        },
         xAxis: [{
             // title: { text: 'Data' },
             alignTicks: false
