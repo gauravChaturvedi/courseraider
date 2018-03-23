@@ -43,14 +43,13 @@ export class App extends React.Component {
             <img src={imgSrc} />
           </div>
           <div className="title-container">
-            <h3>Dashboard</h3>
           </div>
         </div>
         <div className="mn-container">
           <div className="sidebar-container" style={{maxHeight: this.state.conentWrapperMaxHeight}}>
             <Menu/>
             <div className="donut-chart-container">
-              <div className="title-container" style={{marginBottom: '20px'}} >
+              <div className="donut-chart-header" >
                 Aggregate Feedback Score
               </div>
               <CirclePie

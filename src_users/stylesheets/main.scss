@@ -1,3 +1,7 @@
+body {
+  font-family: Raleway;
+}
+
 .progress {
   margin: 10px auto;
   width: 300px;
@@ -66,11 +70,21 @@ th {
   margin-bottom: 20%;
 }
 
+.donut-chart-container>svg {
+  display: block;
+  margin:auto;
+}
+
+.donut-chart-container>svg>text {
+  font-size: 1.1vw;
+}
+
 .logo-container {
     flex-grow: 1;
     flex-shrink: 1;
     flex-basis: 0%;
     align-self: stretch;
+    background-color: #3A3A4F;
 }
 
 .title-container {
@@ -80,12 +94,26 @@ th {
     align-self: stretch;
     padding: 15px 15px 0 15px;
     color: #eee;
-    background-color: #3A3A4F;
+    background-color: #eee;
+}
+
+.donut-chart-header {
+  margin-bottom: 20px;
+  font-size: 1.1vw;
+  flex-grow: 5;
+  flex-shrink: 1;
+  flex-basis: 0%;
+  align-self: stretch;
+  padding: 15px 15px 0 15px;
+  color: #eee;
+  background-color: #3A3A4F;
 }
 
 .logo-container>img {
-  width: 100%;
+  width: 87%;
   height: 100%;
+  display: block;
+  margin: auto;
 }
 
 .nav-pills>li>a {
