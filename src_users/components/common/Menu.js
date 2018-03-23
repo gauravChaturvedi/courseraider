@@ -26,9 +26,9 @@ export default class Menu extends React.Component {
             Dashboard
           </NavItem>
         </IndexLinkContainer>
-        <LinkContainer to="/create-form">
+        <LinkContainer to="/class">
           <NavItem>
-            Create Free Feedback
+            Class Details
           </NavItem>
         </LinkContainer>
       </Nav>
