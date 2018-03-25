@@ -137,11 +137,11 @@ export class ClassDetails extends React.Component {
         margin: [60, 10, 40, 40]
       },
       title: {
-        text: 'Histogram',
+        text: 'Right-Skewed, Multi-Modal Distribution',
         x: 25
       },
       subtitle: {
-        text: '',
+        text: 'Weights of Chicks on Various Diets',
         x: 25
       },
       legend: {
