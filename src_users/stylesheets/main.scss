@@ -93,7 +93,7 @@ th {
     flex-basis: 0%;
     align-self: stretch;
     padding: 15px 15px 0 15px;
-    color: #eee;
+    // color: #eee;
     background-color: #eee;
 }
 
@@ -132,6 +132,10 @@ th {
 // Inactive menu item
 .nav-pills>li>a:hover {
   background-color: #48485A;
+}
+
+.nav-pills>li>a:focus {
+  background-color: #3A3A4F;
 }
 
 .routes-container {
