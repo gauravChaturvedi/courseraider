@@ -80,6 +80,8 @@ export class ClassDetails extends React.Component {
 
   render() {
     const { classes } = this.props;
+    const routesContainer = document.getElementsByClassName('routes-container');
+    const routesContainerWidth = (routesContainer &&  routesContainer[0] && routesContainer[0].offsetWidth) || 840;
     const histogramData = {
       title: {
         text: 'Difficulty Score'
@@ -130,11 +132,13 @@ export class ClassDetails extends React.Component {
     // const metric3_histogramData = JSON.parse(JSON.stringify(histogramData));
     // const metric4_histogramData = JSON.parse(JSON.stringify(histogramData));
 
+
     const columnChartData =
     {
       chart: {
         type: 'column',
-        margin: [60, 10, 40, 40]
+        margin: [60, 10, 40, 40],
+        width: (routesContainerWidth/2 - 20)
       },
       title: {
         text: 'Histogram',
@@ -743,17 +747,13 @@ export class ClassDetails extends React.Component {
 
     return (
       <div className="page-home">
-      <div className="chart-container">
-      <ReactHighcharts config={metric1_histogramData}/>
+      <div className="histo-chart-container">
+        <ReactHighcharts config={metric1_histogramData}/>
+        <ReactHighcharts config={metric2_histogramData}/>
       </div>
-      <div className="chart-container" style={{marginTop: "10%"}}>
-      <ReactHighcharts config={metric2_histogramData}/>
-      </div>
-      <div className="chart-container" style={{marginTop: "10%"}}>
-      <ReactHighcharts config={metric3_histogramData}/>
-      </div>
-      <div className="chart-container" style={{marginTop: "10%"}}>
-      <ReactHighcharts config={metric4_histogramData}/>
+      <div className="histo-chart-container" style={{marginTop: "10%"}}>
+        <ReactHighcharts config={metric3_histogramData}/>
+        <ReactHighcharts config={metric4_histogramData}/>
       </div>
       <div className="chart-container" style={{marginTop: "10%"}}>
       <ReactHighcharts config={wcConfig}/>
