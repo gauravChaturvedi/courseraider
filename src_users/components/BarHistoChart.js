@@ -35,6 +35,13 @@ export default class BarHistoChart extends React.Component {
     exporting(Highcharts);
   }
 
+  componentDidUpdate() {
+    const routesContainerElem = document.getElementsByClassName('routes-container');
+    if (routesContainerElem && routesContainerElem[0]) {
+      routesContainerElem[0].scrollTop = this.state.routesContainerScrollPos;
+    }
+  }
+
   // constructor
   constructor(props) {
     super(props);
@@ -42,7 +49,9 @@ export default class BarHistoChart extends React.Component {
     // default ui local state
     this.state = {
       showHistogram: false,
-      selectedClass: null
+      selectedClass: null,
+      routesContainerScrollPos: 0
+
     };
 
     this.toggleSubMenu = this.toggleSubMenu.bind(this);
@@ -90,7 +99,8 @@ export default class BarHistoChart extends React.Component {
           point: {
               events: {
                   click: function () {
-                    callToggleSubMenu(this.category);
+                    const currentScrollPos = document.getElementsByClassName('routes-container')[0].scrollTop;
+                    callToggleSubMenu(this.category, currentScrollPos);
                   }
               }
           },
@@ -167,7 +177,8 @@ export default class BarHistoChart extends React.Component {
                _id: 'myButton',
                x: -62,
                onclick: function() {
-                   callToggleSubMenu();
+                 const currentScrollPos = document.getElementsByClassName('routes-container')[0].scrollTop;
+                 callToggleSubMenu(null, currentScrollPos);
                },
                _titleKey: "Back",
                text: "<- Back"
@@ -192,10 +203,11 @@ export default class BarHistoChart extends React.Component {
     );
   }
 
-  toggleSubMenu(selectedClass) {
+  toggleSubMenu(selectedClass, currentScrollPos) {
     this.setState({
       showHistogram: !this.state.showHistogram,
-      selectedClass: selectedClass || null
+      selectedClass: selectedClass || null,
+      routesContainerScrollPos: currentScrollPos
     });
   }
 
