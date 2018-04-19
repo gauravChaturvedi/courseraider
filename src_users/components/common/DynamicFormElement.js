@@ -18,12 +18,12 @@ export default class DynamicFormElement extends React.Component {
 
 // render
   render() {
-    const { type, id, removeElement } = this.props;
+    const { type, id, removeElement, labelUpdate, optionsUpdate } = this.props;
     return (
       <div className="dynamic-element-container">
         <button onClick={() => removeElement(id)}>-</button>
-        Label: <input />
-        { type == 'input' ? '' : 'Options'}
+        Label: <input onBlur={(evt)=> labelUpdate(id, evt.target.value)}/>
+        { type == 'input' ? '' : <div> Options <input onBlur={(evt)=> optionsUpdate(id, evt.target.value)} /> (separate by commas)</div>}
       </div>
     );
   }

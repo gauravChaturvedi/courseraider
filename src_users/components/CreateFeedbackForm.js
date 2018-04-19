@@ -18,20 +18,23 @@ export default class CreateFeedbackForm extends React.Component {
     // bind <this> to the event method
     this.addElement = this.addElement.bind(this);
     this.removeElement = this.removeElement.bind(this);
+    this.labelUpdate = this.labelUpdate.bind(this);
+    this.optionsUpdate = this.optionsUpdate.bind(this);
   }
   // render
   render() {
-    console.log(this.state.elements);
+    // console.log(this.state.properties, 'new properties');
+    // console.log(this.state.elements);
     const formElements = [];
     this.state.elements.forEach((elem, i) => {
-      formElements.push(<DynamicFormElement key={i} id={elem.id} removeElement={this.removeElement} type={elem.type} />);
+      formElements.push(<DynamicFormElement key={i} id={elem.id} removeElement={this.removeElement} labelUpdate={this.labelUpdate} optionsUpdate={this.optionsUpdate} type={elem.type} />);
     });
     return (
       <div className="page-home">
-        Create Form Deoude Buddy
+        Create Form
         <div className="create-form-container">
           <div className="create-form-play-area">
-            Play Area
+            Title:  <input onBlur={(evt) => { this.setState({ title: evt.target.value});}} />
             { formElements }
           </div>
           <div className="create-form-toolbox">
@@ -47,31 +50,53 @@ export default class CreateFeedbackForm extends React.Component {
   }
 
   addElement(type) {
-    console.log('Adding element!', type);
-    // change the local ui state
-    // const obj = {
-    //   type: type,
-    //   label: '',
-    // }
+    const elemId = type + this.state.ctr;
     const newObj = {
       type: type,
-      id: type + this.state.ctr
+      id: elemId
     }
+
+    let newPropObj = Object.assign(this.state.properties);
+    newPropObj[elemId] = {
+      type: type,
+      label: '',
+      options: []
+    }
+
     const updatedElementsList = this.state.elements;
     updatedElementsList.push(newObj);
     this.setState({
       elements: updatedElementsList,
-      ctr: (this.state.ctr + 1)
+      ctr: (this.state.ctr + 1),
+      properties: newPropObj
     });
   }
 
   removeElement(id) {
-    console.log('removing element!', id);
     const updatedElementsList = this.state.elements;
-    // updatedElementsList.push(newObj);
+    const newPropsObj = Object.assign(this.state.properties);
+    delete newPropsObj[id];
     this.setState({
       elements: _.remove(updatedElementsList, (elem) => { return elem.id !== id; }),
-      ctr: (this.state.ctr + 1)
+      properties: newPropsObj
+    });
+  }
+
+  labelUpdate(id, newLabel) {
+    console.log(id, newLabel, 'updating label');
+    let newPropObj = Object.assign(this.state.properties);
+    newPropObj[id]['label'] = newLabel;
+    this.setState({
+      properties: newPropObj
+    });
+  }
+
+  optionsUpdate(id, updatedOptions) {
+    console.log(id, updatedOptions, 'updating options');
+    let newPropObj = Object.assign(this.state.properties);
+    newPropObj[id]['options'] = updatedOptions;
+    this.setState({
+      properties: newPropObj
     });
   }
 
