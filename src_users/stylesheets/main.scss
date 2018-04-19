@@ -161,3 +161,15 @@ th {
   display: flex;
   justify-content: space-between;
 }
+
+.create-form-container {
+  display: flex;
+}
+
+.create-form-play-area {
+  flex: 4;
+}
+
+.create-form-toolbox {
+  flex: 1;
+}
