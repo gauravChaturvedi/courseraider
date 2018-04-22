@@ -1,6 +1,8 @@
 import React from "react";
 import _ from 'lodash';
 import DynamicFormElement from "./common/DynamicFormElement.js";
+import Alert from 'react-s-alert';
+
 
 // CreateFeedbackForm component
 export default class CreateFeedbackForm extends React.Component {
@@ -10,8 +12,12 @@ export default class CreateFeedbackForm extends React.Component {
     // default ui local state
     this.state = {
       title: '',
+      description: '',
+      type: "object",
+      required: [],
       properties: {},
       elements: [],
+      UISchema: {},
       ctr: 0
     };
 
@@ -20,47 +26,49 @@ export default class CreateFeedbackForm extends React.Component {
     this.removeElement = this.removeElement.bind(this);
     this.labelUpdate = this.labelUpdate.bind(this);
     this.optionsUpdate = this.optionsUpdate.bind(this);
+    this.saveForm = this.saveForm.bind(this);
+    this.generateUISchema = this.generateUISchema.bind(this);
   }
   // render
   render() {
     // console.log(this.state.properties, 'new properties');
-    // console.log(this.state.elements);
     const formElements = [];
     this.state.elements.forEach((elem, i) => {
-      formElements.push(<DynamicFormElement key={i} id={elem.id} removeElement={this.removeElement} labelUpdate={this.labelUpdate} optionsUpdate={this.optionsUpdate} type={elem.type} />);
+      formElements.push(<DynamicFormElement key={i} id={elem.id} radio={elem.radio} removeElement={this.removeElement} labelUpdate={this.labelUpdate} optionsUpdate={this.optionsUpdate} type={elem.type} />);
     });
     return (
       <div className="page-home">
-        Create Form
         <div className="create-form-container">
           <div className="create-form-play-area">
             Title:  <input onBlur={(evt) => { this.setState({ title: evt.target.value});}} />
+            Description:  <input onBlur={(evt) => { this.setState({ description: evt.target.value});}} />
             { formElements }
           </div>
           <div className="create-form-toolbox">
             Tool Box
             <ul>
-              <li><span>Radio Button <button onClick={() => this.addElement('radio')}>Add</button></span></li>
-              <li><span>Text <button onClick={() => this.addElement('input')}>Add</button></span></li>
+              <li><span>Radio Button <button onClick={() => this.addElement('string', true)}>Add</button></span></li>
+              <li><span>Text <button onClick={() => this.addElement('string', false)}>Add</button></span></li>
             </ul>
           </div>
         </div>
+        <button type="button" onClick={() => this.saveForm()} className="btn btn-success">Success</button>
       </div>
     );
   }
 
-  addElement(type) {
+  addElement(type, radioFlag) {
     const elemId = type + this.state.ctr;
     const newObj = {
       type: type,
-      id: elemId
+      id: elemId,
+      radio: radioFlag
     }
 
     let newPropObj = Object.assign(this.state.properties);
     newPropObj[elemId] = {
       type: type,
-      label: '',
-      options: []
+      title: ''
     }
 
     const updatedElementsList = this.state.elements;
@@ -83,37 +91,67 @@ export default class CreateFeedbackForm extends React.Component {
   }
 
   labelUpdate(id, newLabel) {
-    console.log(id, newLabel, 'updating label');
     let newPropObj = Object.assign(this.state.properties);
-    newPropObj[id]['label'] = newLabel;
+    newPropObj[id]['title'] = newLabel;
     this.setState({
       properties: newPropObj
     });
   }
 
   optionsUpdate(id, updatedOptions) {
-    console.log(id, updatedOptions, 'updating options');
     let newPropObj = Object.assign(this.state.properties);
-    newPropObj[id]['options'] = updatedOptions;
+    newPropObj[id]['enum'] = updatedOptions.split(',');
+    newPropObj[id]['type'] = "string";
     this.setState({
       properties: newPropObj
     });
   }
 
+  saveForm() {
+    // Check to see if title has been written
+    // Check to see if there is atleast one question in the form
+    let UISchema = null;
+    if (this.state.elements.length < 1) {
+      Alert.error('Please add atleast 1 question', {
+              position: 'top-right',
+              effect: 'slide',
+              timeout: 2000
+          });
+    }
+
+    if (this.state.title.length < 1) {
+      Alert.error('Please provide a title', {
+              position: 'top-right',
+              effect: 'slide',
+              timeout: 2000
+          });
+    }
+
+    if (!(this.state.title.length < 1 || this.state.elements.length < 1)) {
+      UISchema = this.generateUISchema();
+
+      const formSchema = {
+        title: this.state.title,
+        properties: this.state.properties,
+        description: this.state.description,
+        type: this.state.type
+      }
+
+      this.setState({
+        UISchema: UISchema
+      });
+    }
+
+  }
+
+  generateUISchema() {
+    let UISchema = {};
+    this.state.elements.forEach((elem, i) => {
+      UISchema[elem.id] = {
+        'ui:widget': elem.radio ? 'radio' : 'textarea'
+      }
+    });
+    return UISchema;
+  }
+
 }
-
-
-// form_json: {
-//   "title": "",
-//   "properties": {
-//     "firstName": {
-//       "type": "input",
-//       "title": "First name"
-//     },
-//     "gender": {
-//       "type": "radio",
-//       "title": "Gender",
-//       "options": ""
-//     }
-//   }
-// }

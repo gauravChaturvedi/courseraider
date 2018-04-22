@@ -177,3 +177,12 @@ th {
 .dynamic-element-container {
   margin: 5%;
 }
+
+.field-radio-group {
+  display: flex;
+  justify-content: space-between;
+}
+
+.field-radio-group> div {
+  margin: 5px 0 0 0 !important;
+}
