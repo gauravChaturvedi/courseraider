@@ -5,6 +5,10 @@ import Menu from "./common/Menu";
 import "../stylesheets/main.scss";
 import imgSrc from '../assets/course-raider-logo.jpg';
 import { CirclePie } from 'salad-ui.chart';
+import Alert from 'react-s-alert';
+
+import 'react-s-alert/dist/s-alert-default.css';
+import 'react-s-alert/dist/s-alert-css-effects/slide.css';
 
 // App component
 export class App extends React.Component {
@@ -62,6 +66,7 @@ export class App extends React.Component {
               />
             </div>
           </div>
+          <Alert stack={{limit: 3}} />
           <div className="routes-container" style={{maxHeight: this.state.conentWrapperMaxHeight}}>{children}</div>
         </div>
       </div>
