@@ -40,19 +40,23 @@ export default class CreateFeedbackForm extends React.Component {
       <div className="page-home">
         <div className="create-form-container">
           <div className="create-form-play-area">
-            Title:  <input onBlur={(evt) => { this.setState({ title: evt.target.value});}} />
-            Description:  <input onBlur={(evt) => { this.setState({ description: evt.target.value});}} />
+            <div className="form-title-input">
+              <label>Title:</label> <input className="form-control question-label-input" onBlur={(evt) => { this.setState({ title: evt.target.value});}} />
+            </div>
+            <div className="form-title-input">
+              <label>Description:</label> <input className="form-control question-label-input" onBlur={(evt) => { this.setState({ description: evt.target.value});}} />
+            </div>
             { formElements }
           </div>
           <div className="create-form-toolbox">
-            Tool Box
+            <h4 className="toolbox-header">Tool Box</h4>
             <ul>
-              <li><span>Radio Button <button onClick={() => this.addElement('string', true)}>Add</button></span></li>
-              <li><span>Text <button onClick={() => this.addElement('string', false)}>Add</button></span></li>
+              <li><span>Radio Button</span> <span><button className="btn btn-info" onClick={() => this.addElement('string', true)}>Add</button></span></li>
+              <li><span>Text</span> <span><button className="btn btn-info" onClick={() => this.addElement('string', false)}>Add</button></span></li>
             </ul>
           </div>
         </div>
-        <button type="button" onClick={() => this.saveForm()} className="btn btn-success">Success</button>
+        <button type="button" onClick={() => this.saveForm()} className="btn btn-success">Save!</button>
       </div>
     );
   }
