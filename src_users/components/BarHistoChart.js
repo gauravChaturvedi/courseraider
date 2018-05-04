@@ -181,7 +181,12 @@ export default class BarHistoChart extends React.Component {
       }, {
           title: { text: 'Histogram' },
           alignTicks: false,
-          opposite: true
+          opposite: true,
+          labels: {
+            formatter: function () {
+                return this.value*20;
+            }
+          }
       }],
 
       yAxis: [{
