@@ -132,6 +132,13 @@ export default class BarHistoChart extends React.Component {
             }
          }
       },
+      tooltip: {
+        split: true,
+        valueSuffix: '',
+        formatter: function () {
+            return 'Q6 Avg Score ' + this.y.toFixed(2);
+        }
+      },
       legend: {
         enabled: false
       },

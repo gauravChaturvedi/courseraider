@@ -104,7 +104,14 @@ export class Dashboard extends React.Component {
       },
       tooltip: {
         split: true,
-        valueSuffix: ''
+        valueSuffix: '',
+        formatter: function(tooltip) {
+          let arr = [];
+          this.points.forEach(point => {
+            arr.push(point.series.name + ':<b>' + point.y.toFixed(2) + '</b>');
+          });
+          return arr;
+      }
       },
       plotOptions: {
         area: {
