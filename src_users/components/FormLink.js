@@ -13,13 +13,13 @@ export class Dashboard extends React.Component {
     const bitlyLink = localStorage.getItem('bitlyLink');
 
     return (
-      <div className="">
-        <div className="">
-          QR CODE
+      <div className="form-link-container">
+        <div className="qr-code-container">
+          <h3>QR CODE</h3>
           <img src={'http://ec2-52-70-176-147.compute-1.amazonaws.com:5000/api/v1/questions/qrcode?url=' + bitlyLink} />
         </div>
-        <div className="">
-          { bitlyLink }
+        <div className="bitly-link-container">
+          <h3>{ bitlyLink }</h3>
         </div>
       </div>
     );

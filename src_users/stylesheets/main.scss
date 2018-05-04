@@ -187,6 +187,13 @@ th {
 
 .create-form-toolbox {
   flex: 1;
+  border-left: 1px solid black;
+  border-top: 1px solid black;
+  border-bottom: 1px solid black;
+}
+
+.create-form-toolbox ul {
+  margin-top: 70px;
 }
 
 .create-form-toolbox li {
@@ -251,5 +258,15 @@ th {
 }
 
 .Collapsible {
+  margin-bottom: 5%;
+}
+
+.form-link-container {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+}
+
+.qr-code-container {
   margin-bottom: 5%;
 }

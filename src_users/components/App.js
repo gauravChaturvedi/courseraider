@@ -67,7 +67,7 @@ export class App extends React.Component {
             </div>
           </div>
           <Alert stack={{limit: 3}} />
-          <div className="routes-container" style={{maxHeight: this.state.conentWrapperMaxHeight}}>{children}</div>
+          <div className="routes-container" style={{height: this.state.conentWrapperMaxHeight}}>{children}</div>
         </div>
       </div>
     );

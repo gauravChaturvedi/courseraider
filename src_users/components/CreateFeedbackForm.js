@@ -83,7 +83,7 @@ export class CreateFeedbackForm extends React.Component {
             { formElements }
           </div>
           <div className="create-form-toolbox">
-            <h4 className="toolbox-header">Tool Box</h4>
+            <h3 className="toolbox-header">Tool Box</h3>
             <ul>
               <li><span>Radio Button</span> <span><button className="btn btn-info" onClick={() => this.addElement('string', true)}>Add</button></span></li>
               <li><span>Text</span> <span><button className="btn btn-info" onClick={() => this.addElement('string', false)}>Add</button></span></li>
