@@ -4,6 +4,7 @@ import { history } from "./store.js";
 import App from "./components/App";
 import Home from "./components/Home";
 import Dashboard from "./components/Dashboard";
+import FormLink from "./components/FormLink";
 import CreateFeedbackForm from "./components/CreateFeedbackForm";
 import ViewForms from "./components/common/ViewForms";
 import UserEdit from "./components/UserEdit";
@@ -17,8 +18,9 @@ const router = (
       <IndexRoute component={Dashboard}/>
       <Route path="home" component={Home}/>
       <Route path="create-form" component={CreateFeedbackForm}/>
-      <Route path="view-forms" component={ViewForms}/>
+      <Route path="view-forms" component={ViewForms} history={history}/>
       <Route path="user-edit(/:id)" component={UserEdit}/>
+      <Route path="form-link" component={FormLink}/>
       <Route path="class" component={ClassDetails}/>
       <Route path="*" component={NotFound}/>
     </Route>

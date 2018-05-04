@@ -10,13 +10,12 @@ export default class FormComponent extends React.Component {
     this.state = {};
 
     // bind <this> to the event method
-    // this.removeElement = this.props.removeElement.bind(this);
   }
 
 
   // render
   render() {
-    const { schema } = this.props;
+    const { schema, UiSchema, class_id } = this.props;
     const uiSchema = {
       "TV killed the radio star": {
         "malaysian_state": {
@@ -128,12 +127,16 @@ export default class FormComponent extends React.Component {
     }
 
     return (
-      <div className="">
+      <div className="form-component-container">
         <Form schema={schema || dummySchema2}
-          uiSchema={uiSchema2}
-          onChange={console.log("changed")}
-          onSubmit={console.log("submitted")}
-          onError={console.log("errors")} />
+          uiSchema={UiSchema || uiSchema2}
+          onChange={() => {console.log("changed")}}
+          onSubmit={() => {}}
+          onError={() => {console.log("error!")}}>
+          <div>
+            <button className="btn btn-success" onClick={() => this.props.activateForm(class_id)} type="submit">Activate</button>
+          </div>
+        </Form>
       </div>
     );
   }

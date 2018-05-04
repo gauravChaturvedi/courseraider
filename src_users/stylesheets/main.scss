@@ -207,7 +207,7 @@ th {
 }
 
 .dynamic-element-container label {
-  width: 10%;
+  // width: 10%;
   vertical-align: middle;
 }
 
@@ -228,4 +228,20 @@ th {
 
 .field-radio-group> div {
   margin: 5px 0 0 0 !important;
+}
+
+
+.form-component-container {
+  margin-bottom: 5%;
+}
+
+.Collapsible__trigger {
+  cursor:pointer;
+  color:blue;
+  text-decoration:underline;
+  margin-bottom: 5%;
+}
+
+.Collapsible {
+  margin-bottom: 5%;
 }
