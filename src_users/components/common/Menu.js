@@ -26,11 +26,6 @@ export default class Menu extends React.Component {
             Dashboard
           </NavItem>
         </IndexLinkContainer>
-        <LinkContainer to="/class">
-          <NavItem>
-            Class Details
-          </NavItem>
-        </LinkContainer>
         <LinkContainer to="/create-form">
           <NavItem>
             Create Form
@@ -71,3 +66,8 @@ export default class Menu extends React.Component {
 //     </LinkContainer>
 //   }
 // </NavItem>
+// <LinkContainer to="/class">
+//   <NavItem>
+//     Class Details
+//   </NavItem>
+// </LinkContainer>
