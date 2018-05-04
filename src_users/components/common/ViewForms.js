@@ -43,8 +43,9 @@ export default class ViewForms extends React.Component {
       forms.map((form, i) => {
         if (!form.active) {
           const cardTitle = 'Class ' + form.class_id;
+          const headerElement = <h4>{cardTitle}</h4>;
           allForms.push(
-            <Collapsible key={i} trigger={cardTitle}>
+            <Collapsible key={i} trigger={headerElement}>
               <FormComponent key={i} class_id={form.class_id} activateForm={this.activateForm} schema={form.form_schema} UiSchema={form.ui_schema} />
             </Collapsible>
           );

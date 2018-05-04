@@ -252,13 +252,19 @@ th {
 
 .Collapsible__trigger {
   cursor:pointer;
-  color:blue;
   text-decoration:underline;
   margin-bottom: 5%;
 }
 
 .Collapsible {
   margin-bottom: 5%;
+  background: #D6D6D6;
+  padding: 20px;
+  border-radius: 4px;
+}
+
+.Collapsible__trigger {
+  // font-size: large;
 }
 
 .form-link-container {
