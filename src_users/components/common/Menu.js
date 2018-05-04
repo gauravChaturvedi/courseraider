@@ -31,16 +31,22 @@ export default class Menu extends React.Component {
             Class Details
           </NavItem>
         </LinkContainer>
+        <LinkContainer to="/create-form">
+          <NavItem>
+            Create Form
+          </NavItem>
+        </LinkContainer>
+        <LinkContainer to="/view-forms">
+          <NavItem>
+            View Forms
+          </NavItem>
+        </LinkContainer>
       </Nav>
     );
   }
 
-  // <LinkContainer to="/create-form">
-  //   <NavItem>
-  //     Create Form
-  //   </NavItem>
-  // </LinkContainer>
-  
+
+
   toggleSubMenu(navItem) {
     this.setState({
       showSubMenu: !this.state.showSubMenu,
