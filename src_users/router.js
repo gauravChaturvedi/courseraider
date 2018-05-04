@@ -17,7 +17,7 @@ const router = (
     <Route path="/" component={App}>
       <IndexRoute component={Dashboard}/>
       <Route path="home" component={Home}/>
-      <Route path="create-form" component={CreateFeedbackForm}/>
+      <Route path="create-form" component={CreateFeedbackForm} history={history}/>
       <Route path="view-forms" component={ViewForms} history={history}/>
       <Route path="user-edit(/:id)" component={UserEdit}/>
       <Route path="form-link" component={FormLink}/>

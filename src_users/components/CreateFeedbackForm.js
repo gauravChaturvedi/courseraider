@@ -176,7 +176,7 @@ export class CreateFeedbackForm extends React.Component {
       }
 
       const postData = {
-        'class_id': 1990,
+        'class_id': this.state.currentNoOfClasses + 1,
         'ui_schema': UISchema,
         'form_schema': formSchema
       };
@@ -185,6 +185,7 @@ export class CreateFeedbackForm extends React.Component {
       .then(res => {
         console.log(res);
         console.log(res.data);
+        this.props.route.history.push('/view-forms');
       });
 
       this.setState({
