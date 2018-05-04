@@ -79,53 +79,23 @@ export class ClassDetails extends React.Component {
   }
 
   render() {
-    const { classes } = this.props;
+    const { classes, performance } = this.props;
+
+    let classDataBlah = {};
+
+    if (performance && performance.data) {
+      performance.data.map(x => {
+        classDataBlah['Class ' + x.class_id] = {
+          "difficulty": [[1, x.question1.dist[1]], [2, x.question1.dist[2]], [3, x.question1.dist[3]], [4, x.question1.dist[4]], [5, x.question1.dist[5]]],
+          "interest": [[1, x.question2.dist[1]], [2, x.question2.dist[2]], [3, x.question2.dist[3]], [4, x.question2.dist[4]], [5, x.question2.dist[5]]],
+          "helpfulness": [[1, x.question3.dist[1]], [2, x.question3.dist[2]], [3, x.question3.dist[3]], [4, x.question3.dist[4]], [5, x.question3.dist[5]]],
+          "satisfaction": [[1, x.question4.dist[1]], [2, x.question4.dist[2]], [3, x.question4.dist[3]], [4, x.question4.dist[4]], [5, x.question4.dist[5]]]
+        }
+      });
+    }
+
     const routesContainer = document.getElementsByClassName('routes-container');
     const routesContainerWidth = (routesContainer &&  routesContainer[0] && routesContainer[0].offsetWidth) || 840;
-    const histogramData = {
-      title: {
-        text: 'Difficulty Score'
-      },
-      exporting: {
-        buttons: {
-          contextButton: {
-            enabled: false
-          }
-        }
-      },
-      xAxis: [{
-        // title: { text: 'Data' },
-        alignTicks: false
-      }, {
-        title: { text: 'Scores' },
-        alignTicks: false,
-        opposite: false
-      }],
-
-      yAxis: [{
-        // title: { text: 'Data' }
-      }, {
-        title: { text: '# of students' },
-        opposite: false
-      }],
-
-      series: [{
-        name: 'Histogram',
-        type: 'bellcurve',
-        xAxis: 1,
-        yAxis: 1,
-        baseSeries: 's1',
-        zIndex: -1
-      }, {
-        name: 'Data',
-        type: 'scatter',
-        data: classesData[classes.id],
-        id: 's1',
-        marker: {
-          radius: 1.5
-        }
-      }]
-    }
 
     // const metric1_histogramData = JSON.parse(JSON.stringify(histogramData));
     // const metric2_histogramData = JSON.parse(JSON.stringify(histogramData));
@@ -736,13 +706,13 @@ export class ClassDetails extends React.Component {
       },
     };
 
-    metric1_histogramData.series[0].data = classesData1[classes.id || "Class 1"]["difficulty"];
+    metric1_histogramData.series[0].data = classDataBlah[classes.id || "Class 1"]["difficulty"];
     metric1_histogramData.title.text = 'Difficulty Score Distribution - ' + classes.id;
-    metric2_histogramData.series[0].data = classesData1[classes.id || "Class 1" ]["interest"];
+    metric2_histogramData.series[0].data = classDataBlah[classes.id || "Class 1" ]["interest"];
     metric2_histogramData.title.text = 'Interest Score Distribution - ' + classes.id;
-    metric3_histogramData.series[0].data = classesData1[classes.id || "Class 1"]["helpfulness"];
+    metric3_histogramData.series[0].data = classDataBlah[classes.id || "Class 1"]["helpfulness"];
     metric3_histogramData.title.text = 'Helpfulness Score Distribution - ' + classes.id;
-    metric4_histogramData.series[0].data = classesData1[classes.id || "Class 1"]["satisfaction"];
+    metric4_histogramData.series[0].data = classDataBlah[classes.id || "Class 1"]["satisfaction"];
     metric4_histogramData.title.text = 'Satisfaction Score Distribution - ' + classes.id;
 
     return (
@@ -766,7 +736,8 @@ export class ClassDetails extends React.Component {
 
 function mapStateToProps(state) {
   return {
-    classes: state.classes
+    classes: state.classes,
+    performance: state.performance
   };
 }
 export default connect(mapStateToProps)(ClassDetails);

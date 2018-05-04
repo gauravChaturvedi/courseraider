@@ -60,6 +60,47 @@ export default class BarHistoChart extends React.Component {
   // render
   render() {
     const { selectedClass } = this.state;
+    const { charData } = this.props;
+
+    let seriesData = [];
+    let categoriesData = [];
+    let distributionData = {};
+
+    if (charData) {
+      for (var x in charData) {
+          if (charData.hasOwnProperty(x)) {
+            let obj = {};
+            obj['name'] = x;
+            obj['y'] = charData[x].avg*0.2;
+            const distData = charData[x].distribution;
+            distributionData[x] = {
+              'avg': charData[x].avg*0.2,
+              'distribution' : [[1, distData[0]], [2, distData[1]], [3, distData[2]], [4, distData[3]], [5, distData[4]]]
+            }
+
+            seriesData.push(obj);
+            categoriesData.push(x);
+          }
+      }
+    }
+
+    // const dummyData = [{
+    //   name: 'Class 1',
+    //   y: barChartData["Class 1"]["avg"]
+    // }, {
+    //   name: 'Class 2',
+    //   y: barChartData["Class 2"]["avg"]
+    // }, {
+    //   name: 'Class 3',
+    //   y: barChartData["Class 3"]["avg"]
+    // }, {
+    //   name: 'Class 4',
+    //   y: barChartData["Class 4"]["avg"]
+    // }, {
+    //   name: 'Class 5',
+    //   y: barChartData["Class 5"]["avg"]
+    // }];
+
     var callToggleSubMenu = this.toggleSubMenu;
     const barChartConfig = {
       chart: {
@@ -76,7 +117,7 @@ export default class BarHistoChart extends React.Component {
         text: 'Click the columns to view score distributions for each class'
       },
       xAxis: {
-        categories: ['Class 1', 'Class 2', 'Class 3', 'Class 4', 'Class 5'],
+        categories: categoriesData,
         type: 'category'
       },
       yAxis: {
@@ -108,7 +149,7 @@ export default class BarHistoChart extends React.Component {
         }
       },
       yAxis: {
-        min: 0.5,
+        min: 0.1,
         max: 1,
           title: {
             text: ''
@@ -117,26 +158,11 @@ export default class BarHistoChart extends React.Component {
       series: [{
         name: 'Q6 Avg Score',
         colorByPoint: true,
-        data: [{
-          name: 'Class 1',
-          y: barChartData["Class 1"]["avg"]
-        }, {
-          name: 'Class 2',
-          y: barChartData["Class 2"]["avg"]
-        }, {
-          name: 'Class 3',
-          y: barChartData["Class 3"]["avg"]
-        }, {
-          name: 'Class 4',
-          y: barChartData["Class 4"]["avg"]
-        }, {
-          name: 'Class 5',
-          y: barChartData["Class 5"]["avg"]
-        }]
+        data: seriesData
       }],
     };
 
-    const histyData = [[0.5061803871239141,4],[0.5691638585994836,5],[0.6321473300750531,9],[0.6951308015506227,12],[0.7581142730261922,12],[0.8210977445017617,4],[0.8840812159773311,3]];
+    // const histyData = [[0.5061803871239141,4],[0.5691638585994836,5],[0.6321473300750531,9],[0.6951308015506227,12],[0.7581142730261922,12],[0.8210977445017617,4],[0.8840812159773311,3]];
 
     const histyConfig = {
       title: {
@@ -189,13 +215,14 @@ export default class BarHistoChart extends React.Component {
       series: [{
           name: 'Histogram',
           type: 'bellcurve',
-          data: selectedClass ? barChartData[selectedClass]["distribution"] : [],
+          data: selectedClass ? distributionData[selectedClass]["distribution"] : [],
           xAxis: 1,
           yAxis: 1,
           baseSeries: 's1',
           zIndex: -1
       }]
   }
+
     return (
       <div className="chart-container" id="bar-histo-chart" style={{marginTop: "10%"}}>
         { this.state.showHistogram ? <ReactHighcharts config={histyConfig}/> : <ReactHighcharts config={barChartConfig}/> }

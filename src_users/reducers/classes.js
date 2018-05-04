@@ -5,7 +5,6 @@ export default function classes(state = {}, action) {
       return action.classes;
 
     case 'SET_SELECTED_CLASS':
-      console.log(action, 'reducer');
       const classId = {
           id: action.classes.class_Id
       };

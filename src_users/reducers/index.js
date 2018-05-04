@@ -3,6 +3,7 @@ import { routerReducer } from "react-router-redux";
 import { reducer as formReducer } from "redux-form";
 import users from "./users";
 import classes from "./classes";
+import performance from "./performance";
 
 // main reducers
 export const reducers = combineReducers({
@@ -19,5 +20,6 @@ export const reducers = combineReducers({
     }
   }),
   users: users,
-  classes: classes
+  classes: classes,
+  performance: performance
 });
