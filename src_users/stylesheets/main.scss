@@ -194,6 +194,10 @@ th {
   margin-bottom: 3%;
 }
 
+.create-form-toolbox span {
+  display: inline-flex;
+  align-items: center;
+}
 .toolbox-header {
   text-align: center;
 }
@@ -207,8 +211,12 @@ th {
 }
 
 .dynamic-element-container label {
-  // width: 10%;
+  width: 10%;
   vertical-align: middle;
+}
+
+.form-group.field.field-string label {
+  width: 100%;
 }
 
 .question-label-input {
