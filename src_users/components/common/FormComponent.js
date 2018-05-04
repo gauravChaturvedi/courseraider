@@ -15,7 +15,7 @@ export default class FormComponent extends React.Component {
 
   // render
   render() {
-    const { schema, UiSchema, class_id } = this.props;
+    const { schema, UiSchema, class_id, active } = this.props;
     const uiSchema = {
       "TV killed the radio star": {
         "malaysian_state": {
@@ -126,6 +126,7 @@ export default class FormComponent extends React.Component {
       }
     }
 
+    const buttonClassName = 'btn ' + (active ? 'btn-danger' : 'btn-success');
     return (
       <div className="form-component-container">
         <Form schema={schema || dummySchema2}
@@ -134,7 +135,7 @@ export default class FormComponent extends React.Component {
           onSubmit={() => {}}
           onError={() => {console.log("error!")}}>
           <div>
-            <button className="btn btn-success" onClick={() => this.props.activateForm(class_id)} type="submit">Activate</button>
+            <button className={buttonClassName} onClick={() => this.props.activateForm(class_id, active)} type="submit">{ active ? 'Deactivate' : 'Activate'}</button>
           </div>
         </Form>
       </div>
