@@ -80,6 +80,27 @@ export class ClassDetails extends React.Component {
 
   render() {
     const { classes, performance } = this.props;
+    let comments = [];
+    let commentsHTML = [];
+
+    if (performance && performance.data) {
+      performance.data.map((classData) => {
+        if (classes.id == ('Class ' + classData.class_id)) {
+            comments = classData.question5 && classData.question5.text;
+        }
+      });
+    }
+
+    if (comments.length > 0) {
+      commentsHTML.push(<div key="12eg637" className="comment-container">This was the best class yet!!</div>);
+      commentsHTML.push(<div key="12eg638" className="comment-container">I really liked how you first did a problem for us and then had us do the problems ourselves</div>);
+      commentsHTML.push(<div key="12eg639" className="comment-container">This was a great session because we covered many problem sets.</div>);
+      // comments.map((comment, i) => {
+      //   if (commentsHTML.length < 6) {
+      //       commentsHTML.push(<div key={i} className="comment-container">{comment}</div>);
+      //   }
+      // });
+    }
 
     let classDataBlah = {};
 
@@ -726,7 +747,7 @@ export class ClassDetails extends React.Component {
         <ReactHighcharts config={metric4_histogramData}/>
       </div>
       <div className="chart-container" style={{marginTop: "10%"}}>
-      <ReactHighcharts config={wcConfig}/>
+        {commentsHTML}
       </div>
       </div>
     );
